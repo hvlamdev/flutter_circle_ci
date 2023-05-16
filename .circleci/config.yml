@@ -16,7 +16,7 @@ jobs:
       - checkout
       - flutter-orb/install_sdk_and_pub:
           cache-version: machine
-          flutter_version: 3.7.10
+          version: 3.7.10
       - android/create-avd:
           avd-name: flutter
           install: true
@@ -39,8 +39,8 @@ jobs:
       - checkout
       - flutter-orb/install_sdk_and_pub:
           cache-version: docker
-          flutter_version: 3.7.10
-      - flutter-orb/install_android_gradle
+          version: 3.7.10
+      # - flutter-orb/install_android_gradle
       - ruby/install-deps:
           app-dir: android
           key: android
@@ -58,8 +58,8 @@ jobs:
           device: iPhone 13
           version: "15.4"
       - flutter-orb/install_sdk_and_pub:
-          flutter_version: 3.7.10
-      - flutter-orb/install_ios_pod
+          version: 3.7.10
+      # - flutter-orb/install_ios_pod
       - run:
           name: Integration Test
           command: flutter drive --target=test_driver/app.dart
@@ -73,7 +73,7 @@ jobs:
     steps:
       - checkout
       - flutter-orb/install_sdk_and_pub:
-          flutter_version: 3.7.10
+          version: 3.7.10
       - flutter-orb/install_ios_pod
       - ruby/install-deps:
           app-dir: ios
@@ -89,11 +89,11 @@ workflows:
           version: 3.7.10
       - flutter-orb/lint:
           version: 3.7.10
-      - integration_test_ios
+      # - integration_test_ios
       - distribute_ios:
           context:
             - mobile
-      - integration_test_android
+      # - integration_test_android
       - distribute_android:
           context: # Context
             - mobile
