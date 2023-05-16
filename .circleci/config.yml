@@ -86,14 +86,14 @@ workflows:
   test_and_distribute:
     jobs:
       - flutter-orb/unit_test:
-          version: 3.10.0
+          version: 2.0.2
       - flutter-orb/lint:
-          version: 3.10.0
+          version: 2.0.2
       # - integration_test_ios
-      - distribute_ios:
-          context:
-            - mobile
+      # - distribute_ios:
+      #     context:
+      #       - mobile
       # - integration_test_android
-      - distribute_android:
-          context: # Context
-            - mobile
+      # - distribute_android:
+      #     context: # Context
+      #       - mobile
