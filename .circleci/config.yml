@@ -30,23 +30,23 @@ jobs:
       - store_artifacts:
           path: ozzie
 
-  distribute_android:
-    executor:
-      name: android/android-docker
-      resource-class: xlarge
-      tag: 2022.03.1
-    steps:
-      - checkout
-      - flutter-orb/install_sdk_and_pub:
-          cache-version: docker
-          version: 3.7.3
-      # - flutter-orb/install_android_gradle
-      - ruby/install-deps:
-          app-dir: android
-          key: android
-      - run:
-          command: bundle exec fastlane distribute_debug
-          working_directory: android
+  # distribute_android:
+  #   executor:
+  #     name: android/android-docker
+  #     resource-class: xlarge
+  #     tag: 2022.03.1
+  #   steps:
+  #     - checkout
+  #     - flutter-orb/install_sdk_and_pub:
+  #         cache-version: docker
+  #         version: 3.7.3
+  #     # - flutter-orb/install_android_gradle
+  #     - ruby/install-deps:
+  #         app-dir: android
+  #         key: android
+  #     - run:
+  #         command: bundle exec fastlane distribute_debug
+  #         working_directory: android
 
   integration_test_ios:
     macos:
@@ -66,21 +66,21 @@ jobs:
       - store_artifacts:
           path: ozzie
 
-  distribute_ios:
-    macos:
-      xcode: 13.3.0
-    resource_class: large
-    steps:
-      - checkout
-      - flutter-orb/install_sdk_and_pub:
-          version: 3.7.3
-      - flutter-orb/install_ios_pod
-      - ruby/install-deps:
-          app-dir: ios
-          key: ios
-      - run:
-          command: bundle exec fastlane distribute_debug
-          working_directory: ios
+  # distribute_ios:
+  #   macos:
+  #     xcode: 13.3.0
+  #   resource_class: large
+  #   steps:
+  #     - checkout
+  #     - flutter-orb/install_sdk_and_pub:
+  #         version: 3.7.3
+  #     - flutter-orb/install_ios_pod
+  #     - ruby/install-deps:
+  #         app-dir: ios
+  #         key: ios
+  #     - run:
+  #         command: bundle exec fastlane distribute_debug
+  #         working_directory: ios
 
 workflows:
   test_and_distribute:
